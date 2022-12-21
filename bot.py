@@ -21,8 +21,7 @@ def return_bypass():
         print ("sharer")
         print("Made with Love by KATPER")
     elif (res.domain == "gdtot"):
-        crypt = input('\nEnter crypt value with double quotes\nExample "OXZIcTlGY053anFzaDEzUnIyeEF5Z3dxcTdkQWVhM2g5bjY0NnhlWERzQT0%3D"\n')
-        print('Example "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"')
+        crypt = input('\nEnter crypt value with double quotes\nExample "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"\n')
         bypassed_link = PyBypass.bypass(userLink, gdtot_crypt=crypt)
         print("Output URL>>",bypassed_link)
         print("Made with Love by KATPER")
