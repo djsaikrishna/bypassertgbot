@@ -10,7 +10,7 @@ import PyBypass
 import os
 #Made with Love by KATPER
 
-def bypass_url():
+def bypassed_url():
     
     userLink = input("\nEnter Link to bypass\n")
     res = get_tld(userLink, as_object=True)
@@ -27,28 +27,27 @@ def bypass_url():
     elif (res.domain == "gdtot"):
         crypt = input('\nEnter crypt value with double quotes\nExample "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"\n')
         bypassed_link = PyBypass.bypass(userLink, gdtot_crypt=crypt)
-        return("Output URL>>",bypassed_link)
+        return("Output URL>>", bypassed_link)
         print("Made with Love by KATPER")
     else:
         bypassed_link = bypasser.bypass(userLink)
-        return("Output URL>>",bypassed_link)
+        return("Output URL>>", bypassed_link)
         print("Made with Love by KATPER")
         #again = input("Wanna bypass another?")
+def bypass_url(update: Update, context: CallbackContext):
+    update.message.reply_text(bypassed_url())  
     
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text(
-        "Hello, This is bypasser bot madee by AD")  
+    update.message.reply_text("Hello, This is bypasser bot madee by AD")  
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("type /bypass <url>")  
     
 def unknown_text(update: Update, context: CallbackContext):
-    update.message.reply_text(
-        "Sorry I can't recognize you , you said '%s'" % update.message.text)
+    update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
   
   
 def unknown(update: Update, context: CallbackContext):
-    update.message.reply_text(
-        "Sorry '%s' is not a valid command" % update.message.text)    
+    update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
 
 def main():
     
