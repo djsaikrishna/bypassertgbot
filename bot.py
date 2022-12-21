@@ -31,10 +31,10 @@ def return_bypass():
         print("Made with Love by KATPER")
         #again = input("Wanna bypass another?")
 
-def bypass(`update: Update, context: CallbackContext`):
+def bypass(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text=return_bypass())
     
-def start(`update: Update, context: CallbackContext`):
+def start(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text='Hi! This is bypass bot, send /bypass <url> ')
     
 def main():
