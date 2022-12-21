@@ -1,12 +1,16 @@
-import requests
-from telegram.ext import Updater, CommandHandler
+from telegram.ext.updater import Updater
+from telegram.update import Update
+from telegram.ext.callbackcontext import CallbackContext
+from telegram.ext.commandhandler import CommandHandler
+from telegram.ext.messagehandler import MessageHandler
+from telegram.ext.filters import Filters
 from tld import get_tld
 import PyBypass as bypasser
 import PyBypass
 import os
 #Made with Love by KATPER
 
-def return_bypass():
+def bypass_url():
     
     userLink = input("\nEnter Link to bypass\n")
     res = get_tld(userLink, as_object=True)
@@ -30,24 +34,39 @@ def return_bypass():
         return("Output URL>>",bypassed_link)
         print("Made with Love by KATPER")
         #again = input("Wanna bypass another?")
-
-def bypass(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=return_bypass())
     
 def start(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Hi! This is bypass bot, send /bypass <url> ')
+update.message.reply_text(
+        "Hello, This is bypasser bot madee by AD")  
+def help(update: Update, context: CallbackContext):
+    update.message.reply_text("type /bypass <url>")  
     
+def unknown_text(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "Sorry I can't recognize you , you said '%s'" % update.message.text)
+  
+  
+def unknown(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "Sorry '%s' is not a valid command" % update.message.text)    
+
 def main():
     
     TOKEN = os.getenv('BOTAPIKEY')
     updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
     
-    bypass_handler = CommandHandler('bypass', bypass)
-    start_handler = CommandHandler('start',start)
-
-    dispatcher.add_handler(bypass_handler)
-    dispatcher.add_handler(start_handler)
+    updater.dispatcher.add_handler(CommandHandler('bypass', bypass_url))
+    updater.dispatcher.add_handler(CommandHandler('start', start))
+    updater.dispatcher.add_handler(CommandHandler('help', help))
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
+    updater.dispatcher.add_handler(MessageHandler(
+    # Filters out unknown commands
+    Filters.command, unknown))
+  
+    # Filters out unknown messages.
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
+   
 
     PORT = int(os.environ.get('PORT', '443'))
     HOOK_URL = 'https://bypassertgbot-eqqgxx.codecapsules.co.za' + '/' + TOKEN
