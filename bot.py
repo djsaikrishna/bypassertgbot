@@ -36,7 +36,7 @@ def bypass_url():
         #again = input("Wanna bypass another?")
     
 def start(update: Update, context: CallbackContext):
-update.message.reply_text(
+    update.message.reply_text(
         "Hello, This is bypasser bot madee by AD")  
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("type /bypass <url>")  
