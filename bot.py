@@ -1,5 +1,5 @@
 import telegram.ext
-TOKEN = '1795538833:AAEXfZEI2JCK0dhxXMIB-nU3eJOtQLqS3s8'
+TOKEN = ''
 
 def start(update, context):
     update.message.reply_text("Hello, bot is working!")
