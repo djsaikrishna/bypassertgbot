@@ -30,8 +30,8 @@ def bypass(update, context):
         
         
     update.message.reply_text(f"bypassed url is {bypassed_link}")
-def bypass_url(update: Update, context: CallbackContext):
-    update.message.reply_text(bypass())  
+#def bypass_url(update: Update, context: CallbackContext):
+#    update.message.reply_text(bypass())  
     
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot madee by AD")  
@@ -51,7 +51,7 @@ def main():
     updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
     
-    updater.dispatcher.add_handler(CommandHandler('bypass', bypass_url))
+    updater.dispatcher.add_handler(CommandHandler('bypass', bypass))
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('help', help))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
