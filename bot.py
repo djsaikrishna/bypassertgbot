@@ -35,12 +35,12 @@ def bypass(update, context):
             update.message.reply_text("⭐ Made with Love by KATPER")
     else:
         
-        update.message.reply_text(f"❌ Link not supported!\nDetected Domain ➡️",res.domain)
+        update.message.reply_text(f"❌ Link not supported!\nDetected Domain ➡️ {res.domain}")
         update.message.reply_text("⭐ Made with Love by KATPER")
 
     
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text("Hello, This is bypasser bot made by KATPAR SAHAB")  
+    update.message.reply_text("Hello, This is bypasser bot madee by AD")  
 def owner(update: Update, context: CallbackContext):
     update.message.reply_text("Owner of this bot is KATPAR SAHAB")  
 def help(update: Update, context: CallbackContext):
