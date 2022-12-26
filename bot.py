@@ -22,32 +22,22 @@ def bypass(update, context):
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
+            update.message.reply_text(f"✅ Bypassed Link>>🔗 {bypassed_link}")
+            update.message.reply_text("⭐ Made with Love by KATPER")
         elif (res.domain == "gdtot"):
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
+            update.message.reply_text(f"✅ Bypassed GDTOT Link>>🔗 {bypassed_link}")
+            update.message.reply_text("⭐ Made with Love by KATPER")
         else:
             bypassed_link = bypasser.bypass(url)
+            update.message.reply_text(f"✅ Bypassed Link>>🔗 {bypassed_link}")
+            update.message.reply_text("⭐ Made with Love by KATPER")
     else:
         bypassed_link = "❌ Domain not supported:"
-    
-    if bypassed_link == "❌ Domain not supported:":
         update.message.reply_text(f"❌ Link not supported!\nDetected Domain:",res.domain)
-        update.message.reply_text("Made with Love by KATPER")
-    else:
-        update.message.reply_text(f"✅ OUTPUT>>🔗 {bypassed_link}")
-        update.message.reply_text("Made with Love by KATPER")
-        
-    
-       # return("Output URL>>", bypassed_link)
-        #print("Made with Love by KATPER")
-    
-        
-        
-        
-    
-    
-#def bypass_url(update: Update, context: CallbackContext):
-#    update.message.reply_text(bypass())  
+        update.message.reply_text("⭐ Made with Love by KATPER")
+
     
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot madee by AD")  
