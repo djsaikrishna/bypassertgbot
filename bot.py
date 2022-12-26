@@ -28,9 +28,15 @@ def bypass(update, context):
         else:
             bypassed_link = bypasser.bypass(url)
     else:
-        bypassed_link = "❌ Domain not supported:",res.domain
+        bypassed_link = "❌ Domain not supported:"
     
-
+    if bypassed_link == "❌ Domain not supported:"
+        update.message.reply_text(f"❌ Link not supported!\nDetected Domain:",res.domain)
+        update.message.reply_text("Made with Love by KATPER")
+    else:
+        update.message.reply_text(f"✅ OUTPUT>>🔗 {bypassed_link}")
+        update.message.reply_text("Made with Love by KATPER")
+        
     
        # return("Output URL>>", bypassed_link)
         #print("Made with Love by KATPER")
@@ -38,8 +44,8 @@ def bypass(update, context):
         
         
         
-    update.message.reply_text(f"✅ OUTPUT>>🔗 {bypassed_link}")
-    update.message.reply_text("Made with Love by KATPER")
+    
+    
 #def bypass_url(update: Update, context: CallbackContext):
 #    update.message.reply_text(bypass())  
     
