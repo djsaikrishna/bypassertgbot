@@ -1,4 +1,3 @@
-
 from telegram.ext.updater import Updater
 from telegram.update import Update
 from telegram.ext.callbackcontext import CallbackContext
@@ -20,12 +19,12 @@ def bypass(update, context):
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
         elif (res.domain == "gdtot"):
-            crypt = "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"
+            crypt = "OXZIcTlGY053anFzaDEzUnIyeEF5Z3dxcTdkQWVhM2g5bjY0NnhlWERzQT0%3D"
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
         else:
             bypassed_link = bypasser.bypass(url)
     else:
-        bypassed_link = "Domain not supported:",res.domain
+        bypassed_link = "⚠️ Domain not supported:",res.domain
     
 
     
@@ -35,7 +34,8 @@ def bypass(update, context):
         
         
         
-    update.message.reply_text(f"Hurrah!! Here is your Link>> {bypassed_link}")
+    update.message.reply_text(f"Hurrah!! Here is your Link>>🔗 {bypassed_link}")
+    update.message.reply_text("Made with Love by KATPER")
 #def bypass_url(update: Update, context: CallbackContext):
 #    update.message.reply_text(bypass())  
     
@@ -61,6 +61,7 @@ def main():
     
     updater.dispatcher.add_handler(CommandHandler('bypass', bypass))
     updater.dispatcher.add_handler(CommandHandler('start', start))
+    updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
     updater.dispatcher.add_handler(MessageHandler(
