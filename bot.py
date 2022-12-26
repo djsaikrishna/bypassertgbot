@@ -19,7 +19,7 @@ def bypass(update, context):
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
         elif (res.domain == "gdtot"):
-            crypt = "OXZIcTlGY053anFzaDEzUnIyeEF5Z3dxcTdkQWVhM2g5bjY0NnhlWERzQT0%3D"
+            crypt = os.getenv('CRYPT')
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
         else:
             bypassed_link = bypasser.bypass(url)
