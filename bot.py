@@ -19,27 +19,30 @@ def bypass(update, context):
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
+        elif (res.domain == "gdtot"):
+            crypt = "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"
+            bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
         else:
             bypassed_link = bypasser.bypass(url)
     else:
-        bypassed_link = "invalid link:",res.domain
+        bypassed_link = "Domain not supported:",res.domain
     
 
-    #elif (res.domain == "gdtot"):
-     #   crypt = input('\nEnter crypt value with double quotes\nExample "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"\n')
-      #  bypassed_link = PyBypass.bypass(userLink, gdtot_crypt=crypt)
+    
        # return("Output URL>>", bypassed_link)
         #print("Made with Love by KATPER")
     
         
         
         
-    update.message.reply_text(f"bypassed url is {bypassed_link}")
+    update.message.reply_text(f"Hurrah!! Here is your Link>> {bypassed_link}")
 #def bypass_url(update: Update, context: CallbackContext):
 #    update.message.reply_text(bypass())  
     
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot madee by AD")  
+def owner(update: Update, context: CallbackContext):
+    update.message.reply_text("Owner of this bot is KATPAR SAHAB")  
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("type /bypass <url>")  
     
