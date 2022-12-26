@@ -18,7 +18,7 @@ def bypass(update, context):
     if res.domain not in ["gplinks","try2link","adf","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         bypassed_link = "invalid link"
     elif (res.domain == "link-center"):
-        bypassed_link = bypasser.bypass(userLink, name="linkvertise")
+        bypassed_link = bypasser.bypass(url, name="linkvertise")
 
     #elif (res.domain == "gdtot"):
      #   crypt = input('\nEnter crypt value with double quotes\nExample "OXZIcTlGEF5Z3dxcTdkQdThJnBmKZdc5Dc6DcGhErWVhM2g5bjY0NnhlWERzQT0%3D"\n')
@@ -26,12 +26,12 @@ def bypass(update, context):
        # return("Output URL>>", bypassed_link)
         #print("Made with Love by KATPER")
     else:
-        bypassed_link = bypasser.bypass(userLink)
+        bypassed_link = bypasser.bypass(url)
         
         
     update.message.reply_text(f"bypassed url is {bypassed_link}")
 def bypass_url(update: Update, context: CallbackContext):
-    update.message.reply_text(bypassed_url())  
+    update.message.reply_text(bypass())  
     
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot madee by AD")  
