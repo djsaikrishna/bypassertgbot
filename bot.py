@@ -8,7 +8,11 @@ from tld import get_tld
 import PyBypass as bypasser
 import PyBypass
 import os
+import logging
+
 #Made with Love by KATPER
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+logging.info('Starting Bot...')
 
 def bypass(update, context):
     url = context.args[0]
@@ -19,12 +23,12 @@ def bypass(update, context):
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
         elif (res.domain == "gdtot"):
-            crypt = os.getenv('CRYPT')
+            crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
         else:
             bypassed_link = bypasser.bypass(url)
     else:
-        bypassed_link = "⚠️ Domain not supported:",res.domain
+        bypassed_link = "❌ Domain not supported:",res.domain
     
 
     
@@ -34,7 +38,7 @@ def bypass(update, context):
         
         
         
-    update.message.reply_text(f"Hurrah!! Here is your Link>>🔗 {bypassed_link}")
+    update.message.reply_text(f"✅ OUTPUT>>🔗 {bypassed_link}")
     update.message.reply_text("Made with Love by KATPER")
 #def bypass_url(update: Update, context: CallbackContext):
 #    update.message.reply_text(bypass())  
@@ -53,6 +57,10 @@ def unknown_text(update: Update, context: CallbackContext):
 def unknown(update: Update, context: CallbackContext):
     update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
 
+def error(update, context):
+    # Logs errors
+    logging.error(f'Update {update} caused error {context.error}')
+
 def main():
     
     TOKEN = os.getenv('BOTAPIKEY')
@@ -67,6 +75,7 @@ def main():
     updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
     Filters.command, unknown))
+    updater.dispatcher.add_error_handler(error)
   
     # Filters out unknown messages.
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
