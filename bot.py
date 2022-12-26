@@ -30,7 +30,7 @@ def bypass(update, context):
       #  bypassed_link = PyBypass.bypass(userLink, gdtot_crypt=crypt)
        # return("Output URL>>", bypassed_link)
         #print("Made with Love by KATPER")
-    else:
+    
         
         
         
