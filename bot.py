@@ -30,7 +30,7 @@ def bypass(update, context):
     else:
         bypassed_link = "❌ Domain not supported:"
     
-    if bypassed_link == "❌ Domain not supported:"
+    if bypassed_link == "❌ Domain not supported:":
         update.message.reply_text(f"❌ Link not supported!\nDetected Domain:",res.domain)
         update.message.reply_text("Made with Love by KATPER")
     else:
