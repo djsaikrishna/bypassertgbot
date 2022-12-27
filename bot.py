@@ -75,7 +75,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
-    updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
+    #updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, handle_message))
     updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
