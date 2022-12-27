@@ -22,7 +22,7 @@ def bypass(update, context):
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
-            update.message.reply_to_message(f"✅ Bypassed Link➡️ {bypassed_link}")
+            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
             update.message.reply_text("⭐ Made with Love by KATPER")
         elif (res.domain == "gdtot"):
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
@@ -43,17 +43,16 @@ def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot madee by AD")  
 
 def owner(update: Update, context: CallbackContext):
-    update.message.reply_to_message("Owner of this bot is KATPAR SAHAB")  
+    update.message.reply_text("Owner of this bot is KATPAR SAHAB")  
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_to_message("type /bypass <url>")  
+    update.message.reply_text("type /bypass <url>")  
     
 def unknown_text(update: Update, context: CallbackContext):
-    update.message.reply_to_message("Sorry I can't recognize you , you said '%s'" % update.message.text)
-  
+    update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
   
 def unknown(update: Update, context: CallbackContext):
-    update.message.reply_to_message("Sorry '%s' is not a valid command" % update.message.text)    
+    update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
 
 def error(update, context):
     # Logs errors
