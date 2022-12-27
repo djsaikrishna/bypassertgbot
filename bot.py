@@ -19,6 +19,7 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from telegram import Update
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from tld import get_tld
 import PyBypass as bypasser
 import PyBypass
@@ -41,7 +42,7 @@ def bypass(update, context):
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
-            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
+            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}",disable_web_page_preview=True)
             update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("Link bypassed successfully!")
         elif (res.domain == "gdtot"):
