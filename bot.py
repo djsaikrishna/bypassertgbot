@@ -84,18 +84,6 @@ def unknown(update: Update, context: CallbackContext):
 def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
-    
-    '''   
-def test_callback(update, context):
-    chat_id = (bot.get_updates())[-1].message.chat_id
-    user_says = " ".join(context.args)
-    update.message.chat_id("You said: " + user_says)
-
-def test1_callback(update, context):
-    chat_id = (bot.get_updates())[-1].message.chat_id
-    user_says = " ".join(context.args)
-    update.message.reply_text(chat_id=update.effective_chat.id, text="Hello world!")
-    ''' 
  
 def main():
     
@@ -107,8 +95,6 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
-    updater.dispatcher.add_handler(CommandHandler("test", test_callback))
-    updater.dispatcher.add_handler(CommandHandler("test1", test1_callback))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
     updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
