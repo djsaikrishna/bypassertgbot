@@ -18,6 +18,7 @@ from telegram.ext.callbackcontext import CallbackContext
 from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
+from telegram import Update
 from tld import get_tld
 import PyBypass as bypasser
 import PyBypass
