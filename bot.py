@@ -10,7 +10,7 @@
     added icons and emojis ------------------------------ 23-12-2022
     added bot start info display in logs ---------------- 24-12-2022
     added logging info for each task in logs ------------ 28-12-2022
-    add rcgen support ----------------------------------- 28-12-2022
+    reserved -------------------------------------------- 00-12-2022
 """
 from telegram.ext.updater import Updater
 from telegram.update import Update
@@ -30,7 +30,7 @@ logging.info('Starting Bot...')
 
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
-        logging.info("Error: No Link is provided!")
+        logging.info("Error: No Link provided!")
         update.message.reply_text("You havent provided any link!\nSend command as /bypass <url>")
     else:
         url = context.args[0]
@@ -83,6 +83,10 @@ def unknown(update: Update, context: CallbackContext):
 def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
+    
+async def test_callback(update, context):
+    user_says = " ".join(context.args)
+    await update.message.reply_text("You said: " + user_says)
 
 
 def main():
@@ -95,6 +99,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
+    updater.dispatcher.add_handler(CommandHandler("test", test_callback))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
     updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
