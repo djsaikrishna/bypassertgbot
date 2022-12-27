@@ -6,7 +6,6 @@ from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from tld import get_tld
 import PyBypass as bypasser
-import PyBypass
 import os
 import logging
 
@@ -16,7 +15,7 @@ logging.info('Starting Bot...')
 
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
-        update.message.reply_text(f"You havent provided any link!\nSend command as {<code>}/bypass <url>{</code>} ")
+        update.message.reply_text("You havent provided any link!\nSend command as /bypass <url>")
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
@@ -46,7 +45,7 @@ def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot madee by AD")  
 
 def owner(update: Update, context: CallbackContext):
-    update.message.reply_text("Owner of this bot is KATPAR SAHAB")  
+    update.message.reply_text("Owner of this bot is KATPER SAHAB")  
 
 def help(update: Update, context: CallbackContext):
     update.message.reply_text("type /bypass <url>")  
