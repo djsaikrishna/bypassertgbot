@@ -35,17 +35,15 @@ def bypass(update, context):
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
-        logging.info("Got the link!")
+        logging.info(f"Link detected: {url}")
     
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
-            logging.info("Detected Domain: link-center")
             bypassed_link = bypasser.bypass(url, name="linkvertise")
             update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
             update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("Link bypassed successfully!")
         elif (res.domain == "gdtot"):
-            logging.info("Detected Domain: GDTOT")
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
             update.message.reply_text(f"✅ Bypassed GDTOT Link➡️ {bypassed_link}")
@@ -53,7 +51,6 @@ def bypass(update, context):
             logging.info("File copied to privided google account!")
         else:
             bypassed_link = bypasser.bypass(url)
-            logging.info("Detected Link:",url)
             update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
             update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("Link bypassed successfully!")
@@ -65,16 +62,20 @@ def bypass(update, context):
 
     
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text("Hello, This is bypasser bot madee by AD")  
+    update.message.reply_text("Hello, This is bypasser bot madee by AD")
+    logging.info("/start command!")
 
 def owner(update: Update, context: CallbackContext):
-    update.message.reply_text("Owner of this bot is KATPER SAHAB")  
+    update.message.reply_text("Owner of this bot is KATPER SAHAB")
+    logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_text("type /bypass <url>")  
+    update.message.reply_text("type /bypass <url>") 
+    logging.info("/help command!")
     
 def unknown_text(update: Update, context: CallbackContext):
     update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
+    logging.info("unknown command!")
   
 def unknown(update: Update, context: CallbackContext):
     update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
