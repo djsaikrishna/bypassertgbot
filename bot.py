@@ -9,7 +9,7 @@
     added check if url is not provided ------------------ 22-12-2022
     added icons and emojis ------------------------------ 23-12-2022
     added bot start info display in logs ---------------- 24-12-2022
-    add file version and sign verify support ------------ 28-12-2022
+    added logging info for each task in logs ------------ 28-12-2022
     add rcgen support ----------------------------------- 28-12-2022
 """
 from telegram.ext.updater import Updater
@@ -30,31 +30,38 @@ logging.info('Starting Bot...')
 
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
-        logging.info("No Link is provided!")
+        logging.info("Error: No Link is provided!")
         update.message.reply_text("You havent provided any link!\nSend command as /bypass <url>")
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
-
+        logging.info("Got the link!")
     
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
+            logging.info("Detected Domain: link-center")
             bypassed_link = bypasser.bypass(url, name="linkvertise")
             update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
             update.message.reply_text("⭐ Made with Love by KATPER")
+            logging.info("Link bypassed successfully!")
         elif (res.domain == "gdtot"):
+            logging.info("Detected Domain: GDTOT")
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
             update.message.reply_text(f"✅ Bypassed GDTOT Link➡️ {bypassed_link}")
             update.message.reply_text("⭐ Made with Love by KATPER")
+            logging.info("File copied to privided google account!")
         else:
             bypassed_link = bypasser.bypass(url)
+            logging.info("Detected Link:",url)
             update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
             update.message.reply_text("⭐ Made with Love by KATPER")
+            logging.info("Link bypassed successfully!")
     else:
         
         update.message.reply_text(f"❌ Link not supported!\nDetected Domain ➡️ {res.domain}")
         update.message.reply_text("⭐ Made with Love by KATPER")
+        logging.info("Error: Link not supported!")
 
     
 def start(update: Update, context: CallbackContext):
