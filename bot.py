@@ -86,7 +86,7 @@ def error(update, context):
     
 def test_callback(update, context):
     user_says = " ".join(context.args)
-    update.message.reply_text("You said: " + user_says)
+    update.message.chat_id("You said: " + user_says)
 
 def test1_callback(update, context):
     user_says = " ".join(context.args)
@@ -103,7 +103,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
     updater.dispatcher.add_handler(CommandHandler("test", test_callback))
-    updater.dispatcher.add_handler(CommandHandler("test", test1_callback))
+    updater.dispatcher.add_handler(CommandHandler("test1", test1_callback))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
     updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
