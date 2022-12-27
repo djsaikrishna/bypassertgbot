@@ -6,6 +6,7 @@ from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from tld import get_tld
 import PyBypass as bypasser
+import PyBypass
 import os
 import logging
 
@@ -37,7 +38,7 @@ def bypass(update, context):
             update.message.reply_text("⭐ Made with Love by KATPER")
     else:
         
-        update.message.reply_text(f"⛔️ Link not supported!\nDetected Domain ➡️ {res.domain}")
+        update.message.reply_text(f"❌ Link not supported!\nDetected Domain ➡️ {res.domain}")
         update.message.reply_text("⭐ Made with Love by KATPER")
 
     
