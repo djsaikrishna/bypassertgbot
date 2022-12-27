@@ -19,7 +19,6 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from tld import get_tld
 import PyBypass as bypasser
 import PyBypass
