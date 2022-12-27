@@ -9,7 +9,6 @@ import PyBypass as bypasser
 import PyBypass
 import os
 import logging
-import responses
 
 #Made with Love by KATPER
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -17,7 +16,7 @@ logging.info('Starting Bot...')
 
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
-        update.message.reply_text(f"You havent provided any link!\nSend command as <code>/bypass <url></code> ")
+        update.message.reply_text(f"You havent provided any link!\nSend command as {<code>}/bypass <url>{</code>} ")
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
@@ -55,19 +54,13 @@ def help(update: Update, context: CallbackContext):
 def unknown_text(update: Update, context: CallbackContext):
     update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
   
-#def unknown(update: Update, context: CallbackContext):
-#    update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
+def unknown(update: Update, context: CallbackContext):
+    update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
 
 def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
 
-def handle_message(update, context): #this displays message in logs
-    text = str(update.message.text).lower()
-    logging.info(f'User ({update.message.chat.id}) says: {text}')
-     # Bot response
-    response = responses.get_response(text)
-    update.message.reply_text(response)
 
 def main():
     
@@ -79,11 +72,10 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
-    #updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
-    updater.dispatcher.add_handler(MessageHandler(Filters.text, handle_message))
-    #updater.dispatcher.add_handler(MessageHandler(
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
+    updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
-    #Filters.command, unknown))
+    Filters.command, unknown))
     updater.dispatcher.add_error_handler(error)
   
     # Filters out unknown messages.
