@@ -1,3 +1,17 @@
+"""
+@author  KATPER
+@date    28-12-2022
+@desc
+    Ad link bypasser bot which can also bypass gdtot links
+@change
+    basic bot created ----------------------------------- 20-12-2022
+    added gdtot support --------------------------------- 21-12-2022
+    added check if url is not provided ------------------ 22-12-2022
+    added icons and emojis ------------------------------ 23-12-2022
+    added bot start info display in logs ---------------- 24-12-2022
+    add file version and sign verify support ------------ 28-12-2022
+    add rcgen support ----------------------------------- 28-12-2022
+"""
 from telegram.ext.updater import Updater
 from telegram.update import Update
 from telegram.ext.callbackcontext import CallbackContext
@@ -16,6 +30,7 @@ logging.info('Starting Bot...')
 
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
+        logger.info("No Link is provided!")
         update.message.reply_text("You havent provided any link!\nSend command as /bypass <url>")
     else:
         url = context.args[0]
