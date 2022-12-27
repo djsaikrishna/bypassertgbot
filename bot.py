@@ -41,23 +41,23 @@ def bypass(update, context):
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
-            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}",disable_web_page_preview=True)
+            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}",disable_web_page_preview=True, quote=True)
             update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("Link bypassed successfully!")
         elif (res.domain == "gdtot"):
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
-            update.message.reply_text(f"✅ Bypassed GDTOT Link➡️ {bypassed_link}")
+            update.message.reply_text(f"✅ Bypassed GDTOT Link➡️ {bypassed_link}",disable_web_page_preview=True)
             update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("File copied to privided google account!")
         else:
             bypassed_link = bypasser.bypass(url)
-            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}")
+            update.message.reply_text(f"✅ Bypassed Link➡️ {bypassed_link}",disable_web_page_preview=True)
             update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("Link bypassed successfully!")
     else:
         
-        update.message.reply_text(f"❌ Link not supported!\nDetected Domain ➡️ {res.domain}")
+        update.message.reply_text(f"❌ Link not supported!\nDetected Domain ➡️ {res.domain}",disable_web_page_preview=True)
         update.message.reply_text("⭐ Made with Love by KATPER")
         logging.info("Error: Link not supported!")
 
@@ -85,6 +85,7 @@ def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
     
+ '''   
 def test_callback(update, context):
     chat_id = (bot.get_updates())[-1].message.chat_id
     user_says = " ".join(context.args)
@@ -94,7 +95,8 @@ def test1_callback(update, context):
     chat_id = (bot.get_updates())[-1].message.chat_id
     user_says = " ".join(context.args)
     update.message.reply_text(chat_id=update.effective_chat.id, text="Hello world!")
-
+ ''' 
+ 
 def main():
     
     TOKEN = os.getenv('BOTAPIKEY')
