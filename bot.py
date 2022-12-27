@@ -40,9 +40,11 @@ def bypass(update, context):
 
     
 def start(update: Update, context: CallbackContext):
-    update.message.reply_to_message("Hello, This is bypasser bot madee by AD")  
+    update.message.reply_text("Hello, This is bypasser bot madee by AD")  
+
 def owner(update: Update, context: CallbackContext):
     update.message.reply_to_message("Owner of this bot is KATPAR SAHAB")  
+
 def help(update: Update, context: CallbackContext):
     update.message.reply_to_message("type /bypass <url>")  
     
@@ -57,6 +59,10 @@ def error(update, context):
     # Logs errors
     logging.error(f'Update {update} caused error {context.error}')
 
+def handle_message(update, context): #this displays message in logs
+    text = str(update.message.text).lower()
+    logging.info(f'User ({update.message.chat.id}) says: {text}')
+
 def main():
     
     TOKEN = os.getenv('BOTAPIKEY')
@@ -68,6 +74,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('owner', owner))
     updater.dispatcher.add_handler(CommandHandler('help', help))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, handle_message))
     updater.dispatcher.add_handler(MessageHandler(
     # Filters out unknown commands
     Filters.command, unknown))
