@@ -30,7 +30,7 @@ logging.info('Starting Bot...')
 
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
-        logger.info("No Link is provided!")
+        logging.info("No Link is provided!")
         update.message.reply_text("You havent provided any link!\nSend command as /bypass <url>")
     else:
         url = context.args[0]
