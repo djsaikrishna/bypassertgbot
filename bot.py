@@ -132,11 +132,17 @@ def start(update: Update, context: CallbackContext):
     logging.info("/start command!")
 
 def owner(update: Update, context: CallbackContext):
-    update.message.reply_text("Owner of this bot is KATPER SAHAB")
+    update.message.reply_text("Owner of this bot is 💪 KATPER SAHAB")
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_text("type /bypass url \nSupported Sites:[https://katb.in/abefuqetoxe](https://katb.in/abefuqetoxe)") 
+    update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *❓ HELP*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"type /bypass url \nSupported Sites: https://katb.in/abefuqetoxe",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True) 
     logging.info("/help command!")
     
 def unknown_text(update: Update, context: CallbackContext):
