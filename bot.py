@@ -80,8 +80,11 @@ def bypass(update, context):
             
             logging.info("Link bypassed successfully!")
         elif (res.domain == "gdtot"):
+            msg = sendMessage(f"⫸ <b>Processing GDTOT:</b> <code>{url}</code>", context.bot, update)
+            logging.info(f"Processing GDTOT: {url}")
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
+            deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ GDTOT Link copied!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
@@ -94,7 +97,10 @@ def bypass(update, context):
                             quote=True)
             logging.info("File copied to privided google account!")
         else:
+            msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
+            logging.info(f"Processing: {url}")
             bypassed_link = bypasser.bypass(url)
+            deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
@@ -122,7 +128,7 @@ def bypass(update, context):
 
    
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text("Hello, This is bypasser bot made by AD")
+    update.message.reply_text("Hello, This is bypasser bot made by KATPER SAHAB")
     logging.info("/start command!")
 
 def owner(update: Update, context: CallbackContext):
@@ -130,7 +136,7 @@ def owner(update: Update, context: CallbackContext):
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_text(f"type <code>/bypass <url></code>",parse_mode="Markdown") 
+    update.message.reply_text(f"type `/bypass <url>` \nSupported Sites:[https://katb.in/abefuqetoxe](https://katb.in/abefuqetoxe)",parse_mode="MarkdownV2") 
     logging.info("/help command!")
     
 def unknown_text(update: Update, context: CallbackContext):
