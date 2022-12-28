@@ -1,4 +1,4 @@
 # bypassertgbot
-This is a telegram bypasser bot for linkvertise,gdtot and all other similar sites
+This is a telegram bot to bypass ad links completely dependant on [PyBypass](https://pypi.org/project/PyBypass) for bypassing url.
 
-# Status: NOT WOARKING!
+# Status: NOT WORKING!
