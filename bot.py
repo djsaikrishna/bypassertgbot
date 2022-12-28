@@ -19,6 +19,7 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from telegram import Update
+from telegram.message import Message
 import telegram
 from tld import get_tld
 import PyBypass as bypasser
@@ -27,9 +28,26 @@ import os
 import logging
 
 #Made with Love by KATPER
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
 
+def sendMessage(text: str, bot, update: Update):
+    try:
+        return bot.send_message(update.message.chat_id,
+                                reply_to_message_id=update.message.message_id,
+                                text=text, parse_mode='HTMl',
+                                disable_web_page_preview=True)
+    except Exception as e:
+        LOGGER.error(str(e)) 
+        
+def deleteMessage(bot, message: Message):
+    try:
+        bot.delete_message(chat_id=message.chat.id,
+                           message_id=message.message_id)
+    except Exception as e:
+        LOGGER.error(str(e))
+        
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
         logging.info("Error: No Link provided!")
@@ -107,7 +125,7 @@ def bypass(update, context):
                             quote=True)
         logging.info("Error: Link not supported!")
 
-    
+   
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot made by AD")
     logging.info("/start command!")
