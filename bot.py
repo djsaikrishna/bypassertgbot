@@ -1,6 +1,6 @@
 """
 @author  KATPER
-@date    28-12-2022
+@date    20-12-2022
 @desc
     Ad link bypasser bot which can also bypass gdtot links
 @change
@@ -10,7 +10,7 @@
     added icons and emojis ------------------------------ 23-12-2022
     added bot start info display in logs ---------------- 24-12-2022
     added logging info for each task in logs ------------ 28-12-2022
-    reserved -------------------------------------------- 00-12-2022
+    added more formatting ------------------------------- 28-12-2022
 """
 from telegram.ext.updater import Updater
 from telegram.update import Update
@@ -42,7 +42,7 @@ def bypass(update, context):
         if (res.domain == "link-center"):
             bypassed_link = bypasser.bypass(url, name="linkvertise")
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *✅ Link Bypassed!*\n"
+                            f" *✅ Ad Link Bypassed!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
                             f"👉 {bypassed_link}\n\n\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -52,29 +52,51 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
             
-            #update.message.reply_text(f"✅ Bypassed Link 👉 {bypassed_link}",disable_web_page_preview=True, quote=True)
-            #update.message.reply_text("⭐ Made with Love by KATPER")
             logging.info("Link bypassed successfully!")
         elif (res.domain == "gdtot"):
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
             bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
-            update.message.reply_text(f"✅ Bypassed GDTOT Link 👉 {bypassed_link}",disable_web_page_preview=True)
-            update.message.reply_text("⭐ Made with Love by KATPER")
+            update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *✅ GDTOT Link copied!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"👉 {bypassed_link}\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
             logging.info("File copied to privided google account!")
         else:
             bypassed_link = bypasser.bypass(url)
-            update.message.reply_text(f"✅ Bypassed Link 👉 {bypassed_link}",disable_web_page_preview=True)
-            update.message.reply_text("⭐ Made with Love by KATPER")
+            update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *✅ Ad Link Bypassed!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"👉 {bypassed_link}\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
             logging.info("Link bypassed successfully!")
     else:
         
-        update.message.reply_text(f"❌ Link not supported!\nDetected Domain 👉 {res.domain}",disable_web_page_preview=True)
-        update.message.reply_text("⭐ Made with Love by KATPER")
+        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *❌ Link not supported!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"‼ Detected Domain: {res.domain}\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
         logging.info("Error: Link not supported!")
 
     
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text("Hello, This is bypasser bot madee by AD")
+    update.message.reply_text("Hello, This is bypasser bot made by AD")
     logging.info("/start command!")
 
 def owner(update: Update, context: CallbackContext):
