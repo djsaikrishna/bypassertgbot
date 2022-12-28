@@ -33,20 +33,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logging.info('Starting Bot...')
 
 def sendMessage(text: str, bot, update: Update):
-    try:
         return bot.send_message(update.message.chat_id,
                                 reply_to_message_id=update.message.message_id,
                                 text=text, parse_mode='HTMl',
                                 disable_web_page_preview=True)
-    except Exception as e:
-        LOGGER.error(str(e)) 
+ 
         
 def deleteMessage(bot, message: Message):
-    try:
         bot.delete_message(chat_id=message.chat.id,
                            message_id=message.message_id)
-    except Exception as e:
-        LOGGER.error(str(e))
         
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
@@ -69,7 +64,7 @@ def bypass(update, context):
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
             msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
-            LOGGER.info(f"Processing: {url}")
+            logging.info(f"Processing: {url}")
             bypassed_link = bypasser.bypass(url, name="linkvertise")
             deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
