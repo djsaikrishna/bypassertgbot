@@ -136,7 +136,7 @@ def owner(update: Update, context: CallbackContext):
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_text(f"type /bypass url \nSupported Sites:[https://katb.in/abefuqetoxe](https://katb.in/abefuqetoxe)",parse_mode="MarkdownV2") 
+    update.message.reply_text("type /bypass url \nSupported Sites:[https://katb.in/abefuqetoxe](https://katb.in/abefuqetoxe)") 
     logging.info("/help command!")
     
 def unknown_text(update: Update, context: CallbackContext):
