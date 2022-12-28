@@ -19,6 +19,7 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 from telegram import Update
+import telegram
 from tld import get_tld
 import PyBypass as bypasser
 import PyBypass
@@ -32,7 +33,16 @@ logging.info('Starting Bot...')
 def bypass(update, context):
     if len(context.args) == 0: #If no url is sent, than this will show this msg
         logging.info("Error: No Link provided!")
-        update.message.reply_text("You havent provided any link!\nSend command as /bypass <url>")
+        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *‼ No link provided!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"👉 Send command as <code>/bypass url</code>\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
@@ -40,7 +50,10 @@ def bypass(update, context):
     
     if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
         if (res.domain == "link-center"):
+            msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
+            LOGGER.info(f"Processing: {url}")
             bypassed_link = bypasser.bypass(url, name="linkvertise")
+            deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
@@ -85,7 +98,7 @@ def bypass(update, context):
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *❌ Link not supported!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"‼ Detected Domain: {res.domain}\n\n\n"
+                            f"‼ Detected Domain: *{res.domain}*\n\n\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *Bot by KATPER*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
@@ -104,7 +117,7 @@ def owner(update: Update, context: CallbackContext):
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_text("type /bypass <url>") 
+    update.message.reply_text(f"type <code>/bypass <url></code>",parse_mode="Markdown") 
     logging.info("/help command!")
     
 def unknown_text(update: Update, context: CallbackContext):
