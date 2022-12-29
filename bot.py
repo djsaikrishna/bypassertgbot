@@ -103,10 +103,12 @@ def bypass(update, context):
             logging.info(f"Processing: {url}")
             try:
                 bypassed_link = bypasser.bypass(url)
-                deleteMessage(context.bot, msg)
+                
             except:
-                update.message.reply_text("Something went wrong!")
-                logging.info("something went wrong!")
+                deleteMessage(context.bot, msg)
+                update.message.reply_text("🔴 Sorry, Something went wrong!")
+                logging.info("🔴 Error: Something went wrong!")
+            deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
@@ -233,7 +235,7 @@ def zip(update: Update, context: CallbackContext):
 """    
 
 def owner(update: Update, context: CallbackContext):
-    update.message.reply_text("Owner of this bot is 💪 KATPER SAHAB")
+    update.message.reply_text("Owner of this bot is 💫 KATPER SAHAB")
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
