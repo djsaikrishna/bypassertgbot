@@ -67,7 +67,12 @@ def bypass(update, context):
         if (res.domain == "link-center"):
             msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
             logging.info(f"Processing: {url}")
-            bypassed_link = bypasser.bypass(url, name="linkvertise")
+            try:
+                bypassed_link = bypasser.bypass(url, name="linkvertise")
+            except:
+                deleteMessage(context.bot, msg)
+                update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                logging.info("🔴 Error: Something went wrong!")
             deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
@@ -85,7 +90,12 @@ def bypass(update, context):
             msg = sendMessage(f"⫸ <b>Processing GDTOT:</b> <code>{url}</code>", context.bot, update)
             logging.info(f"Processing GDTOT: {url}")
             crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
-            bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
+            try:
+                bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
+            except:
+                deleteMessage(context.bot, msg)
+                update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                logging.info("🔴 Error: Something went wrong!")
             deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ GDTOT Link copied!*\n"
@@ -106,7 +116,7 @@ def bypass(update, context):
                 
             except:
                 deleteMessage(context.bot, msg)
-                update.message.reply_text("🔴 Sorry, Something went wrong!")
+                update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
                 logging.info("🔴 Error: Something went wrong!")
             deleteMessage(context.bot, msg)
             update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
