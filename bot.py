@@ -47,7 +47,7 @@ ______       _     _             _   __  ___ ___________ ___________
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
-logging.info('BANNER')
+logging.info(BANNER)
 
 def sendMessage(text: str, bot, update: Update):
         return bot.send_message(update.message.chat_id,
@@ -61,19 +61,21 @@ def deleteMessage(bot, message: Message):
                            message_id=message.message_id)
 
 def url_checker(url) -> bool:
-	try:
-		#Get Url
-		get = requests.get(url)
-		# if the request succeeds 
-		if get.status_code == 200:
-			return True
-		else:
-			return False
-
-	#Exception
-	except requests.exceptions.RequestException as e:
-        # print URL with Errs
-		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
+	    try:
+       
+            # pass the url into
+            # request.hear
+            response = requests.head(url)
+         
+            # check the status code
+            if response.status_code == 200:
+                logging.info("URL is valid!")
+                return True
+            else:
+                logging.info("Invalid URL!")
+                return False
+        except requests.ConnectionError as e:
+            return e
 def bypass(update, context):
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
