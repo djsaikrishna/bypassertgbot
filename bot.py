@@ -33,21 +33,17 @@ import requests
 
 #Made with Love by KATPER
 BANNER = """
-
-______       _     _             _   __  ___ ___________ ___________ 
-| ___ \     | |   | |           | | / / / _ \_   _| ___ \  ___| ___ \
-| |_/ / ___ | |_  | |__  _   _  | |/ / / /_\ \| | | |_/ / |__ | |_/ /
-| ___ \/ _ \| __| | '_ \| | | | |    \ |  _  || | |  __/|  __||    / 
-| |_/ / (_) | |_  | |_) | |_| | | |\  \| | | || | | |   | |___| |\ \ 
-\____/ \___/ \__| |_.__/ \__, | \_| \_/\_| |_/\_/ \_|   \____/\_| \_|
-                          __/ |                                      
-                         |___/                                       
+ ____   __  ____    ____  _  _    __ _   __  ____  ____  ____  ____ 
+(  _ \ /  \(_  _)  (  _ \( \/ )  (  / ) / _\(_  _)(  _ \(  __)(  _ \
+ ) _ ((  O ) )(     ) _ ( )  /    )  ( /    \ )(   ) __/ ) _)  )   /
+(____/ \__/ (__)   (____/(__/    (__\_)\_/\_/(__) (__)  (____)(__\_)
+                              668
 """
 #https://patorjk.com/software/taag/#p=testall&f=Graffiti&t=Bot%20by%20KATPER
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
-logging.info(BANNER)
+logging.info(BANNER)  
 
 def sendMessage(text: str, bot, update: Update):
         return bot.send_message(update.message.chat_id,
@@ -61,23 +57,20 @@ def deleteMessage(bot, message: Message):
                            message_id=message.message_id)
 
 def url_checker(url) -> bool:
-    try:
-        
-        #pass the url into
-        #request.hear
-        response = requests.head(url)
+    #pass the url into
+    #request.hear
+    response = requests.head(url)
          
-        # check the status code
-        if response.status_code == 200:
+    # check the status code
+    if response.status_code == 200:
             
-            logging.info("URL is valid!")
-            return True
-        else:
+        logging.info("URL is valid!")
+        return True
+    else:
             
-            logging.info("Invalid URL!")
-            return False
-    except requests.ConnectionError as e:
-        return e
+        logging.info("Invalid URL!")
+        return False
+
 def bypass(update, context):
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
@@ -92,7 +85,7 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                             
-    elif url_checker(context.args) == False:
+    elif url_checker(context) == False:
         logging.info("URL does not exist!")
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ Link does not exist!*\n"
