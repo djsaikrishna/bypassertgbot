@@ -69,7 +69,9 @@ def url_checker(url) -> bool:
 			return True
 		else:
 			return False
-
+    except requests.exceptions.RequestException as e:
+        # print URL with Errs
+		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
 def bypass(update, context):
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
