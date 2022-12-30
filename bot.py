@@ -57,17 +57,22 @@ def deleteMessage(bot, message: Message):
                            message_id=message.message_id)
 
 def url_checker(url) -> bool:
-    #pass the url into
-    #request.hear
-    response = requests.head(url)
+    try:
+        #pass the url into
+        #request.hear
+        response = requests.head(url)
          
-    # check the status code
-    if response.status_code == 200:
+        # check the status code
+        if response.status_code == 200:
             
-        logging.info("URL is valid!")
-        return True
-    else:
+            logging.info("URL is valid!")
+            return True
+        else:
             
+            logging.info("Invalid URL!")
+            return False
+            
+    except requests.exceptions.ConnectionError:
         logging.info("Invalid URL!")
         return False
 
