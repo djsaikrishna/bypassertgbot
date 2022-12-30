@@ -71,7 +71,7 @@ def url_checker(url) -> bool:
 			return False
 
 def bypass(update, context):
-    if len(context.args) == 0 or : #If empty command is sent without url
+    if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ No link provided!*\n"
