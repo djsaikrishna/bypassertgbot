@@ -61,21 +61,23 @@ def deleteMessage(bot, message: Message):
                            message_id=message.message_id)
 
 def url_checker(url) -> bool:
-	    try:
-       
-            # pass the url into
-            # request.hear
-            response = requests.head(url)
+    try:
+        
+        #pass the url into
+        #request.hear
+        response = requests.head(url)
          
-            # check the status code
-            if response.status_code == 200:
-                logging.info("URL is valid!")
-                return True
-            else:
-                logging.info("Invalid URL!")
-                return False
-        except requests.ConnectionError as e:
-            return e
+        # check the status code
+        if response.status_code == 200:
+            
+            logging.info("URL is valid!")
+            return True
+        else:
+            
+            logging.info("Invalid URL!")
+            return False
+    except requests.ConnectionError as e:
+        return e
 def bypass(update, context):
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
