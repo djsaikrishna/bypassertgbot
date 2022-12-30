@@ -28,11 +28,26 @@ import PyBypass
 import os
 import sys
 import logging
+import requests
+
 
 #Made with Love by KATPER
+BANNER = """
+
+______       _     _             _   __  ___ ___________ ___________ 
+| ___ \     | |   | |           | | / / / _ \_   _| ___ \  ___| ___ \
+| |_/ / ___ | |_  | |__  _   _  | |/ / / /_\ \| | | |_/ / |__ | |_/ /
+| ___ \/ _ \| __| | '_ \| | | | |    \ |  _  || | |  __/|  __||    / 
+| |_/ / (_) | |_  | |_) | |_| | | |\  \| | | || | | |   | |___| |\ \ 
+\____/ \___/ \__| |_.__/ \__, | \_| \_/\_| |_/\_/ \_|   \____/\_| \_|
+                          __/ |                                      
+                         |___/                                       
+"""
+#https://patorjk.com/software/taag/#p=testall&f=Graffiti&t=Bot%20by%20KATPER
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
+logging.info('BANNER')
 
 def sendMessage(text: str, bot, update: Update):
         return bot.send_message(update.message.chat_id,
@@ -44,9 +59,19 @@ def sendMessage(text: str, bot, update: Update):
 def deleteMessage(bot, message: Message):
         bot.delete_message(chat_id=message.chat.id,
                            message_id=message.message_id)
-        
+
+def url_checker(url) -> bool:
+	try:
+		#Get Url
+		get = requests.get(url)
+		# if the request succeeds 
+		if get.status_code == 200:
+			return True
+		else:
+			return False
+
 def bypass(update, context):
-    if len(context.args) == 0: #If no url is sent, than this will show this msg
+    if len(context.args) == 0 or : #If empty command is sent without url
         logging.info("Error: No Link provided!")
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ No link provided!*\n"
@@ -58,6 +83,20 @@ def bypass(update, context):
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True)
+                            
+    elif url_checker(context.args) == False:
+        logging.info("URL does not exist!")
+        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *‼ Link does not exist!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"👉 Your link does not exist!\nCheck any typo error and try again.\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
+
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
