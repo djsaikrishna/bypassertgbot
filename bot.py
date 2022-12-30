@@ -32,12 +32,12 @@ import requests
 
 
 #Made with Love by KATPER
-BANNER = """
- ____   __  ____    ____  _  _    __ _   __  ____  ____  ____  ____ 
-(  _ \ /  \(_  _)  (  _ \( \/ )  (  / ) / _\(_  _)(  _ \(  __)(  _ \
- ) _ ((  O ) )(     ) _ ( )  /    )  ( /    \ )(   ) __/ ) _)  )   /
-(____/ \__/ (__)   (____/(__/    (__\_)\_/\_/(__) (__)  (____)(__\_)
-                              668
+BANNER = """\n
+ ____   __  ____    ____  _  _    __ _   __  ____  ____  ____  ____\n 
+(  _ \ /  \(_  _)  (  _ \( \/ )  (  / ) / _\(_  _)(  _ \(  __)(  _ \\n
+ ) _ ((  O ) )(     ) _ ( )  /    )  ( /    \ )(   ) __/ ) _)  )   /\n
+(____/ \__/ (__)   (____/(__/    (__\_)\_/\_/(__) (__)  (____)(__\_)\n
+ 
 """
 #https://patorjk.com/software/taag/#p=testall&f=Graffiti&t=Bot%20by%20KATPER
 
@@ -90,7 +90,7 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                             
-    elif url_checker(context) == False:
+    elif url_checker(context.args) == False:
         logging.info("URL does not exist!")
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ Link does not exist!*\n"
