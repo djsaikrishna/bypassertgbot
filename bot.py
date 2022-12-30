@@ -69,7 +69,9 @@ def url_checker(url) -> bool:
 			return True
 		else:
 			return False
-    except requests.exceptions.RequestException as e:
+
+	#Exception
+	except requests.exceptions.RequestException as e:
         # print URL with Errs
 		raise SystemExit(f"{url}: is Not reachable \nErr: {e}")
 def bypass(update, context):
