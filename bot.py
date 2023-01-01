@@ -162,7 +162,8 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                     logging.info("Link bypassed successfully!")
-    else:
+                    
+    elif url_validate(context.args[0]) == False:
         
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *❌ Link not supported!*\n"
