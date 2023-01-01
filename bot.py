@@ -98,10 +98,6 @@ def bypass(update, context):
                 logging.info(f"Processing: {url}")
                 try:
                     bypassed_link = bypasser.bypass(url, name="linkvertise")
-                except:
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                    logging.info("🔴 Error: Something went wrong!")
                     deleteMessage(context.bot, msg)
                     update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
@@ -115,6 +111,13 @@ def bypass(update, context):
                             quote=True)
             
                     logging.info("Link bypassed successfully!")
+                except:
+                    deleteMessage(context.bot, msg)
+                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                    logging.info("🔴 Error: Something went wrong!")
+                    
+            
+                    
             elif (res.domain == "gdtot"):
                 msg = sendMessage(f"⫸ <b>Processing GDTOT:</b> <code>{url}</code>", context.bot, update)
                 logging.info(f"Processing GDTOT: {url}")
