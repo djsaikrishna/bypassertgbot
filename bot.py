@@ -140,15 +140,15 @@ def bypass(update, context):
             else:
                 msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
                 logging.info(f"Processing: {url}")
-                    try:
-                        bypassed_link = bypasser.bypass(url)
+                try:
+                    bypassed_link = bypasser.bypass(url)
                 
-                    except:
-                        deleteMessage(context.bot, msg)
-                        update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                        logging.info("🔴 Error: Something went wrong!")
-                        deleteMessage(context.bot, msg)
-                        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                except:
+                    deleteMessage(context.bot, msg)
+                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                    logging.info("🔴 Error: Something went wrong!")
+                    deleteMessage(context.bot, msg)
+                    update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
                             f"👉 {bypassed_link}\n\n\n"
@@ -158,7 +158,7 @@ def bypass(update, context):
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True)
-                        logging.info("Link bypassed successfully!")
+                    logging.info("Link bypassed successfully!")
     else:
         
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
