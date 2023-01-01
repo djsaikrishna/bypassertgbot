@@ -33,6 +33,7 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 lk21==1.6.0
 lxml==4.9.2
+validators==0.20.0
 MarkupSafe==2.1.1
 mutagen==1.46.0
 nest-asyncio==1.5.6
