@@ -29,14 +29,15 @@ import os
 import sys
 import logging
 import requests
+import validators
 
 
 #Made with Love by KATPER
 BANNER = """\n
- ____   __  ____    ____  _  _    __ _   __  ____  ____  ____  ____\n 
-(  _ \ /  \(_  _)  (  _ \( \/ )  (  / ) / _\(_  _)(  _ \(  __)(  _ \\n
- ) _ ((  O ) )(     ) _ ( )  /    )  ( /    \ )(   ) __/ ) _)  )   /\n
-(____/ \__/ (__)   (____/(__/    (__\_)\_/\_/(__) (__)  (____)(__\_)\n
+ ____   __  ____    ____  _  _    __ _   __  ____  ____  ____  ____ 
+(  _ \ /  \(_  _)  (  _ \( \/ )  (  / ) / _\(_  _)(  _ \(  __)(  _ \
+ ) _ ((  O ) )(     ) _ ( )  /    )  ( /    \ )(   ) __/ ) _)  )   /
+(____/ \__/ (__)   (____/(__/    (__\_)\_/\_/(__) (__)  (____)(__\_)
  
 """
 #https://patorjk.com/software/taag/#p=testall&f=Graffiti&t=Bot%20by%20KATPER
@@ -56,25 +57,21 @@ def deleteMessage(bot, message: Message):
         bot.delete_message(chat_id=message.chat.id,
                            message_id=message.message_id)
 
-def url_checker(url) -> bool:
+def url_validate(url) -> bool:
     try:
-        #pass the url into
-        #request.hear
-        response = requests.head(url)
-         
-        # check the status code
-        if response.status_code == 200:
-            
+        valid=validators.url('https://code.gs')
+        if valid==True:
             logging.info("URL is valid!")
             return True
         else:
-            
             logging.info("Invalid URL!")
             return False
+        
             
-    except requests.exceptions.ConnectionError:
-        logging.info("Invalid URL!")
+    except:
         return False
+        
+
 
 def bypass(update, context):
     if len(context.args) == 0: #If empty command is sent without url
@@ -90,8 +87,10 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                             
-    elif url_checker(context.args) == False:
-        logging.info("URL does not exist!")
+    elif update.message.entities_type == url:
+        
+        #url_validate(message.url) == False:
+        logging.info("URL mil gayi!")
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ Link does not exist!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
