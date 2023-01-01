@@ -59,7 +59,7 @@ def deleteMessage(bot, message: Message):
 
 def url_validate(url) -> bool:
     try:
-        valid=validators.url('https://code.gs')
+        valid=validators.url(url)
         if valid==True:
             logging.info("URL is valid!")
             return True
@@ -87,12 +87,15 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                             
-    elif update.message.MessageEntityType.URL == '':
-        url = update.message.MessageEntityType.URL
+    elif url_validate(context.args[0]) == True:
+        logging.info("URL True mil gayi!")
+            
+    elif url_validate(context.args[0]) == False:
+        logging.info("URL Flase mil gayi!")    
         
         #url_validate(message.url) == False:
-        logging.info("URL mil gayi!",url)
-        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+        #logging.info("URL mil gayi!",url)
+        #update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ Link does not exist!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
                             f"👉 Your link does not exist!\nCheck any typo error and try again.\n\n\n"
