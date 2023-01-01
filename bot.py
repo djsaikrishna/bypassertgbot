@@ -92,7 +92,7 @@ def bypass(update, context):
             
     elif url_validate(context.args[0]) == False:
         logging.info("URL Flase mil gayi!")    
-        
+ """       
         #url_validate(message.url) == False:
         #logging.info("URL mil gayi!",url)
         #update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -105,7 +105,7 @@ def bypass(update, context):
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True)
-
+"""
     else:
         url = context.args[0]
         res = get_tld(url, as_object=True)
