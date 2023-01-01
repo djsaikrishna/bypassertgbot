@@ -87,7 +87,8 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                             
-    elif url = update.message.MessageEntityType.URL:
+    elif update.message.MessageEntityType.URL == '':
+        url = update.message.MessageEntityType.URL
         
         #url_validate(message.url) == False:
         logging.info("URL mil gayi!",url)
