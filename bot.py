@@ -166,7 +166,7 @@ def bypass(update, context):
                     logging.info("🔴 Error: Something went wrong!")   
         else:
             update.message.reply_text("🔴 Link is not valid!",quote=True)
-                    logging.info("🔴 Error: Link is not valid!")  
+            logging.info("🔴 Error: Link is not valid!")  
             
    
 def start(update: Update, context: CallbackContext):
