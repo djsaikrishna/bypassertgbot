@@ -70,6 +70,9 @@ def url_validate(url) -> bool:
 
 
 def bypass(update, context):
+        logging.info(url_validate('fhgggg'))        
+        logging.info(url_validate('fhgggg') == False)        
+
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -98,9 +101,6 @@ def bypass(update, context):
         logging.info("Error: Link not supported!")
         
     else:
-        logging.info(url_validate(context.args[0]))        
-        logging.info(url_validate(context.args[0]) == False)        
-
         #logging.info("URL is valid!")
         url = context.args[0]
         res = get_tld(url, as_object=True)
