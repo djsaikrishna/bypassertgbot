@@ -86,8 +86,22 @@ def bypass(update, context):
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True)
-                            
-    elif url_validate(context.args[0]) == True:
+    
+    elif url_validate(context.args[0]) == False:
+        
+        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *❌ Link not supported!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"‼ Detected Domain: *{res.domain}*\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
+        logging.info("Error: Link not supported!")
+        
+    else:
         logging.info("URL is valid!")
         url = context.args[0]
         res = get_tld(url, as_object=True)
@@ -145,11 +159,6 @@ def bypass(update, context):
                 logging.info(f"Processing: {url}")
                 try:
                     bypassed_link = bypasser.bypass(url)
-                
-                except:
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                    logging.info("🔴 Error: Something went wrong!")
                     deleteMessage(context.bot, msg)
                     update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *✅ Ad Link Bypassed!*\n"
@@ -162,20 +171,14 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                     logging.info("Link bypassed successfully!")
+                
+                except:
+                    deleteMessage(context.bot, msg)
+                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                    logging.info("🔴 Error: Something went wrong!")
                     
-    elif url_validate(context.args[0]) == False:
-        
-        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *❌ Link not supported!*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"‼ Detected Domain: *{res.domain}*\n\n\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *Bot by KATPER*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
-                            parse_mode="Markdown",
-                            disable_web_page_preview=True,
-                            quote=True)
-        logging.info("Error: Link not supported!")
+                    
+    
             
     
        
