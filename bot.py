@@ -70,8 +70,9 @@ def url_validate(url) -> bool:
 
 
 def bypass(update, context):
-        logging.info(url_validate('fhgggg'))        
-        logging.info(url_validate('fhgggg') == False)        
+    
+    logging.info(url_validate('fhgggg'))        
+    logging.info(url_validate('fhgggg') == False)        
 
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
