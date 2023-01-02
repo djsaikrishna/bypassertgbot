@@ -61,7 +61,7 @@ def url_validate(url) -> bool:
     valid=validators.url(url)
     if valid==True:
         logging.info("URL is valid!")
-            return True
+        return True
     else:
         logging.info("Invalid URL!")
         return False
