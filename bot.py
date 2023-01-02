@@ -44,6 +44,7 @@ BANNER = """\n
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
+logging.info(telegram.__bot_api_version__ = '6.3')
 logging.info(BANNER)  
 
 def sendMessage(text: str, bot, update: Update):
@@ -69,10 +70,7 @@ def url_validate(url) -> bool:
         
 
 
-def bypass(update, context):
-    
-    logging.info(url_validate('fhgggg'))        
-    logging.info(url_validate('fhgggg') == False)        
+def bypass(update, context):        
 
     if len(context.args) == 0: #If empty command is sent without url
         logging.info("Error: No Link provided!")
@@ -162,10 +160,19 @@ def bypass(update, context):
                     
                 except:
                     deleteMessage(context.bot, msg)
-                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                    logging.info("🔴 Error: Something went wrong!")   
+                    update.message.reply_text("🔴 Sorry, Link is not supported!",quote=True)
+                    logging.info("🔴 Error: Link is not supported!")   
         else:
-            update.message.reply_text("🔴 Link is not valid!",quote=True)
+            update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *‼ Invalid Link!*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                            f"👉 You havnt provided any valid link.\n\n\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                            f" *Bot by KATPER*\n"
+                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                            parse_mode="Markdown",
+                            disable_web_page_preview=True,
+                            quote=True)
             logging.info("🔴 Error: Link is not valid!")  
             
    
