@@ -64,16 +64,6 @@ def url_validate(url) -> bool:
         return True
     else:
         logging.info("Invalid URL!")
-        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *❌ invalid url!*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"‼ Detected Domain: *{res.domain}*\n\n\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *Bot by KATPER*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
-                            parse_mode="Markdown",
-                            disable_web_page_preview=True,
-                            quote=True)
         return False
         
         
@@ -108,6 +98,9 @@ def bypass(update, context):
         logging.info("Error: Link not supported!")
         
     else:
+        logging.info(url_validate(context.args[0]))        
+        logging.info(url_validate(context.args[0]) == False)        
+
         logging.info("URL is valid!")
         url = context.args[0]
         res = get_tld(url, as_object=True)
