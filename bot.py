@@ -44,7 +44,6 @@ BANNER = """\n
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
-logging.info(telegram.__bot_api_version__)
 logging.info(BANNER)  
 
 def sendMessage(text: str, bot, update: Update):
