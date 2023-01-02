@@ -60,10 +60,10 @@ def deleteMessage(bot, message: Message):
 def url_validate(url) -> bool:
     valid=validators.url(url)
     if valid==True:
-        logging.info("URL is valid!")
+        #logging.info("URL is valid!")
         return True
     else:
-        logging.info("Invalid URL!")
+        #logging.info("Invalid URL!")
         return False
         
         
@@ -101,7 +101,7 @@ def bypass(update, context):
         logging.info(url_validate(context.args[0]))        
         logging.info(url_validate(context.args[0]) == False)        
 
-        logging.info("URL is valid!")
+        #logging.info("URL is valid!")
         url = context.args[0]
         res = get_tld(url, as_object=True)
         logging.info(f"Detected Link: {url}")
