@@ -182,8 +182,7 @@ def start(update: Update, context: CallbackContext):
 
 def owner(update: Update, context: CallbackContext):
     update.message.reply_text("Owner of this bot is 💫 KATPER SAHAB",
-                            quote=True),
-    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("🌐 Source Code", url="https://github.com/askfriends/bypassertgbot")]]), reply_to_message_id=message.id)
+                            quote=True)
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
