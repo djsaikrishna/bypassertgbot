@@ -201,9 +201,9 @@ def help(update: Update, context: CallbackContext):
                             quote=True) 
     logging.info("/help command!")
     
-def unknown_text(update: Update, context: CallbackContext):
-    update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
-    logging.info("unknown command!")
+#def unknown_text(update: Update, context: CallbackContext):
+#    update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
+#    logging.info("unknown command!")
   
 def unknown(update: Update, context: CallbackContext):
     update.message.reply_text("Sorry '%s' is not a valid command" % update.message.text)    
