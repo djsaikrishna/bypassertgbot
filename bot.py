@@ -44,7 +44,7 @@ BANNER = """\n
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logging.info('Starting Bot...')
-logging.info(telegram.__bot_api_version__ = '6.3')
+logging.info(telegram.__bot_api_version__)
 logging.info(BANNER)  
 
 def sendMessage(text: str, bot, update: Update):
@@ -181,7 +181,9 @@ def start(update: Update, context: CallbackContext):
     logging.info("/start command!")
 
 def owner(update: Update, context: CallbackContext):
-    update.message.reply_text("Owner of this bot is 💫 KATPER SAHAB")
+    update.message.reply_text("Owner of this bot is 💫 KATPER SAHAB",
+                            quote=True),
+    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("🌐 Source Code", url="https://github.com/askfriends/bypassertgbot")]]), reply_to_message_id=message.id)
     logging.info("/owner command!")
 
 def help(update: Update, context: CallbackContext):
