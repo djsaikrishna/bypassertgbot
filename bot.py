@@ -58,14 +58,13 @@ def deleteMessage(bot, message: Message):
                            message_id=message.message_id)
 
 def url_validate(url) -> bool:
-    try:
-        valid=validators.url(url)
-        if valid==True:
-            logging.info("URL is valid!")
+    valid=validators.url(url)
+    if valid==True:
+        logging.info("URL is valid!")
             return True
-        else:
-            logging.info("Invalid URL!")
-            return False
+    else:
+        logging.info("Invalid URL!")
+        return False
         
             
     except:
