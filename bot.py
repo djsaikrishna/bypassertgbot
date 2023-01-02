@@ -86,74 +86,62 @@ def bypass(update, context):
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True)
-    
-    elif url_validate(context.args[0]) == False:
-        
-        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *❌ Link not supported!*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"‼ Detected Domain: *{res.domain}*\n\n\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *Bot by KATPER*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
-                            parse_mode="Markdown",
-                            disable_web_page_preview=True,
-                            quote=True)
-        logging.info("Error: Link not supported!")
-        
     else:
-        #logging.info("URL is valid!")
-        url = context.args[0]
-        res = get_tld(url, as_object=True)
-        logging.info(f"Detected Link: {url}")
-        if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
-            if (res.domain == "link-center"):
-                msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
-                logging.info(f"Processing: {url}")
-                try:
-                    bypassed_link = bypasser.bypass(url, name="linkvertise")
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *✅ Ad Link Bypassed!*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"👉 {bypassed_link}\n\n\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *Bot by KATPER*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
-                            parse_mode="Markdown",
-                            disable_web_page_preview=True,
-                            quote=True)
+    
+        if url_validate(context.args[0]):
             
-                    logging.info("Link bypassed successfully!")
-                except:
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                    logging.info("🔴 Error: Something went wrong!")
-                    
-            
-                    
-            elif (res.domain == "gdtot"):
-                msg = sendMessage(f"⫸ <b>Processing GDTOT:</b> <code>{url}</code>", context.bot, update)
-                logging.info(f"Processing GDTOT: {url}")
-                crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
-                try:
-                    bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
-                except:
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                    logging.info("🔴 Error: Something went wrong!")
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *✅ GDTOT Link copied!*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"👉 {bypassed_link}\n\n\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *Bot by KATPER*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
-                            parse_mode="Markdown",
-                            disable_web_page_preview=True,
-                            quote=True)
-                    logging.info("File copied to privided google account!")
+             #logging.info("URL is valid!")
+            url = context.args[0]
+            res = get_tld(url, as_object=True)
+            logging.info(f"Detected Link: {url}")
+            if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
+                if (res.domain == "link-center"):
+                    msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
+                    logging.info(f"Processing: {url}")
+                    try:
+                        bypassed_link = bypasser.bypass(url, name="linkvertise")
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                                f" *✅ Ad Link Bypassed!*\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                                f"👉 {bypassed_link}\n\n\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                                f" *Bot by KATPER*\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                                parse_mode="Markdown",
+                                disable_web_page_preview=True,
+                                quote=True)
+                
+                        logging.info("Link bypassed successfully!")
+                    except:
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                        logging.info("🔴 Error: Something went wrong!")
+                        
+                
+                        
+                elif (res.domain == "gdtot"):
+                    msg = sendMessage(f"⫸ <b>Processing GDTOT:</b> <code>{url}</code>", context.bot, update)
+                    logging.info(f"Processing GDTOT: {url}")
+                    crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
+                    try:
+                        bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
+                    except:
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                        logging.info("🔴 Error: Something went wrong!")
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                                f" *✅ GDTOT Link copied!*\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                                f"👉 {bypassed_link}\n\n\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                                f" *Bot by KATPER*\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                                parse_mode="Markdown",
+                                disable_web_page_preview=True,
+                                quote=True)
+                        logging.info("File copied to privided google account!")
             else:
                 msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
                 logging.info(f"Processing: {url}")
@@ -171,17 +159,15 @@ def bypass(update, context):
                             disable_web_page_preview=True,
                             quote=True)
                     logging.info("Link bypassed successfully!")
-                
+                    
                 except:
                     deleteMessage(context.bot, msg)
                     update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                    logging.info("🔴 Error: Something went wrong!")
-                    
-                    
-    
+                    logging.info("🔴 Error: Something went wrong!")   
+        else:
+            update.message.reply_text("🔴 Link is not valid!",quote=True)
+                    logging.info("🔴 Error: Link is not valid!")  
             
-    
-       
    
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Hello, This is bypasser bot made by KATPER SAHAB")
