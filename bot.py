@@ -230,7 +230,7 @@ def main():
     updater.dispatcher.add_error_handler(error)
   
     # Filters out unknown messages.
-    updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
+    #updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
     PORT = int(os.environ.get('PORT', '443'))
     HOOK_URL = 'https://bypassertgbot-eqqgxx.codecapsules.co.za' + '/' + TOKEN
     updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TOKEN, webhook_url=HOOK_URL)
