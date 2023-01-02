@@ -66,9 +66,6 @@ def url_validate(url) -> bool:
         logging.info("Invalid URL!")
         return False
         
-            
-    except:
-        return False
         
 
 
