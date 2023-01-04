@@ -192,6 +192,7 @@ def help(update: Update, context: CallbackContext):
                             f" *❓ HELP*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
                             f"Type /bypass <url> \nSupported Sites: https://katb.in/abefuqetoxe \n"
+                            f"Deployed On: https://codecapsules.io/ \n"
                             f"Deployed From: https://github.com/askfriends/bypassertgbot/",
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
