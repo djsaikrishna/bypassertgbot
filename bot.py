@@ -12,6 +12,7 @@
     added logging info for each task in logs ------------ 28-12-2022
     added more formatting ------------------------------- 28-12-2022
     added status msg when link is being converted ------- 28-12-2022
+    added check to see if link is provided or not ------- 02-01-2023
 """
 from telegram.ext.updater import Updater
 from telegram.update import Update
@@ -91,6 +92,7 @@ def bypass(update, context):
             url = context.args[0]
             res = get_tld(url, as_object=True)
             logging.info(f"Detected Link: {url}")
+            logging.info(f"Detected Domain: {res.domain}")
             if res.domain in ["gplinks","try2link","adf","link-center","bitly","ouo","shareus","shortly","tinyurl","thinfi","hypershort","sirigan","gtlinks","theforyou","linkvertise","shortest","pkin","tekcrypt","short2url","rocklinks","rocklinks","moneykamalo","easysky","indianshortner","crazyblog","tnvalue","shortingly","dulink","bindaaslinks","pdiskshortener","mdiskshortner","earnl","rewayatcafe","crazyblog","bitshorten","rocklink","droplink","earn4link","tnlink","ez4short","xpshort","vearnl","adrinolinks","techymozo","linkbnao","linksxyz","short-jambo","droplink","linkpays","pi-l","tnlink","open2get","anonfiles","antfiles","1fichier","gofile","hxfile","krakenfiles","mdisk","mediafire","pixeldrain","racaty","sendcm","sfile","solidfiles","sourceforge","uploadbaz","uploadee","uppit","userscloud","wetransfer","yandex","zippyshare","fembed","mp4upload","streamlare","streamsb","streamtape","appdrive","gdtot","hubdrive","sharerpw"]:
                 if (res.domain == "link-center"):
                     msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
@@ -139,30 +141,31 @@ def bypass(update, context):
                                 disable_web_page_preview=True,
                                 quote=True)
                         logging.info("File copied to privided google account!")
-            else:
-                msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
-                logging.info(f"Processing: {url}")
-                try:
-                    bypassed_link = bypasser.bypass(url)
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *✅ Ad Link Bypassed!*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"👉 {bypassed_link}\n\n\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
-                            f" *Bot by KATPER*\n"
-                            f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
-                            parse_mode="Markdown",
-                            disable_web_page_preview=True,
-                            quote=True)
-                    logging.info("Link bypassed successfully!")
+                else:
+                    msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
+                    logging.info(f"Processing: {url}")
+                    try:
+                        bypassed_link = bypasser.bypass(url)
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                                f" *✅ Ad Link Bypassed!*\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
+                                f"👉 {bypassed_link}\n\n\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                                f" *Bot by KATPER*\n"
+                                f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n",
+                                parse_mode="Markdown",
+                                disable_web_page_preview=True,
+                                quote=True)
+                        logging.info("Link bypassed successfully!")
                     
-                except:
-                    deleteMessage(context.bot, msg)
-                    update.message.reply_text("🔴 Sorry, Link is not supported!",quote=True)
-                    logging.info("🔴 Error: Link is not supported!")   
-        else:
-            update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
+                    except:
+                        
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text("🔴 Sorry, Link is not supported!",quote=True)
+                        logging.info("🔴 Error: Link is not supported!")   
+            else:
+                update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *‼ Invalid Link!*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
                             f"👉 You havnt provided any valid link.\n\n\n"
@@ -172,7 +175,7 @@ def bypass(update, context):
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True)
-            logging.info("🔴 Error: Link is not valid!")  
+                logging.info("🔴 Error: Link is not valid!")  
             
    
 def start(update: Update, context: CallbackContext):
@@ -188,7 +191,7 @@ def help(update: Update, context: CallbackContext):
     update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *❓ HELP*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"Type /bypass <url> \nSupported Sites: https://katb.in/abefuqetoxe",
+                            f"Type /bypass <url> \nSupported Sites: https://katb.in/abefuqetoxe"
                             f"Deployed From: https://github.com/askfriends/bypassertgbot/",
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
