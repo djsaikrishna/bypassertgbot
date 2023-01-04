@@ -188,7 +188,8 @@ def help(update: Update, context: CallbackContext):
     update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                             f" *❓ HELP*\n"
                             f"➖➖➖➖➖➖➖➖➖➖➖➖\n\n"
-                            f"type /bypass url \nSupported Sites: https://katb.in/abefuqetoxe",
+                            f"Type /bypass <url> \nSupported Sites: https://katb.in/abefuqetoxe",
+                            f"Deployed From: https://github.com/askfriends/bypassertgbot/",
                             parse_mode="Markdown",
                             disable_web_page_preview=True,
                             quote=True) 
