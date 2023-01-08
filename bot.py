@@ -125,10 +125,6 @@ def bypass(update, context):
                     crypt = os.getenv('CRYPT') #CRYPT is env variable stored in codecapsules.io 
                     try:
                         bypassed_link = PyBypass.bypass(url, gdtot_crypt=crypt)
-                    except:
-                        deleteMessage(context.bot, msg)
-                        update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
-                        logging.info("🔴 Error: Something went wrong!")
                         deleteMessage(context.bot, msg)
                         update.message.reply_text(f"➖➖➖➖➖➖➖➖➖➖➖➖\n"
                                 f" *✅ GDTOT Link copied!*\n"
@@ -141,6 +137,11 @@ def bypass(update, context):
                                 disable_web_page_preview=True,
                                 quote=True)
                         logging.info("File copied to privided google account!")
+                    except:
+                        deleteMessage(context.bot, msg)
+                        update.message.reply_text("🔴 Sorry, Something went wrong!",quote=True)
+                        logging.info("🔴 Error: Something went wrong!")
+                        
                 else:
                     msg = sendMessage(f"⫸ <b>Processing:</b> <code>{url}</code>", context.bot, update)
                     logging.info(f"Processing: {url}")
